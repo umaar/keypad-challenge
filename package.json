@@ -1,0 +1,26 @@
+{
+  "name": "keypad-challenge",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umaar/keypad-challenge.git"
+  },
+  "author": "Umar Hansa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umaar/keypad-challenge/issues"
+  },
+  "homepage": "https://github.com/umaar/keypad-challenge#readme",
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node"
+    ]
+  }
+}
