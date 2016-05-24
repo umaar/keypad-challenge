@@ -22,5 +22,8 @@
     "envs": [
       "node"
     ]
+  },
+  "devDependencies": {
+    "ava": "^0.14.0"
   }
 }

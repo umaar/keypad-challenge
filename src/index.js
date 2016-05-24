@@ -8,11 +8,10 @@ const alphabet = [
 
 const directions = ['up', 'right', 'down', 'left'];
 
-let currentX = 0;
-let currentY = 0;
-
 function getSequence(word) {
 	let sequence = [];
+	let currentX = 0;
+	let currentY = 0;
 
 	word.split('').forEach(letter => {
 		for (let i = 0; i < alphabet.length; i++) {
@@ -53,4 +52,4 @@ function getSequence(word) {
 	return sequence;
 }
 
-console.log(getSequence('a b'));
+module.exports = getSequence;
