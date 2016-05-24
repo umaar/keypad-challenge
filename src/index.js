@@ -8,45 +8,47 @@ const alphabet = [
 
 const directions = ['up', 'right', 'down', 'left'];
 
+function getXDirection(targetX) {
+	let xDirection;
+	xDirection = (targetX > 0) ? directions[1] : xDirection;
+	xDirection = (targetX < 0) ? directions[3] : xDirection;
+	return xDirection;
+}
+
+function getYDirection(targetY) {
+	let yDirection;
+	yDirection = (targetY > 0) ? directions[2] : yDirection;
+	yDirection = (targetY < 0) ? directions[0] : yDirection;
+	return yDirection;
+}
+
+function createDirections(count, direction) {
+	return Array(Math.abs(count)).fill(direction);
+}
+
 function getSequence(word) {
 	let sequence = [];
 	let currentX = 0;
 	let currentY = 0;
 
 	word.split('').forEach(letter => {
-		for (let i = 0; i < alphabet.length; i++) {
-			const row = alphabet[i];
-
-			for (let j = 0; j < row.length; j++) {
-				const char = alphabet[i][j];
-
+		alphabet.forEach((row, rowIndex) => {
+			row.forEach((char, columnIndex) => {
 				if (char === letter) {
-					const targetX = j - currentX;
-					const targetY = i - currentY;
+					const targetX = columnIndex - currentX;
+					const targetY = rowIndex - currentY;
 
-					let direction;
-					if (targetX > 0) {
-						direction = directions[1];
-					}
-					if (targetX < 0) {
-						direction = directions[3];
-					}
-					sequence = sequence.concat(Array(Math.abs(targetX)).fill(direction));
+					const xDirection = getXDirection(targetX);
+					const yDirection = getYDirection(targetY);
 
-					if (targetY > 0) {
-						direction = directions[2];
-					}
-					if (targetY < 0) {
-						direction = directions[0];
-					}
-					sequence = sequence.concat(Array(Math.abs(targetY)).fill(direction));
-					sequence = sequence.concat('⏎');
-
-					currentX = j;
-					currentY = i;
+					const xDirections = createDirections(targetX, xDirection);
+					const yDirections = createDirections(targetY, yDirection);
+					sequence = sequence.concat(xDirections, yDirections, '⏎');
+					currentX = columnIndex;
+					currentY = rowIndex;
 				}
-			}
-		}
+			});
+		});
 	});
 
 	return sequence;
