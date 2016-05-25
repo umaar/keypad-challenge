@@ -27,13 +27,12 @@ function createDirections(count, direction) {
 }
 
 function getSequence(word) {
-	let sequence = [];
 	let currentX = 0;
 	let currentY = 0;
 
-	word.split('').forEach(letter => {
-		alphabet.forEach((row, rowIndex) => {
-			row.forEach((char, columnIndex) => {
+	return word.split('').reduce((charSequence, letter) => {
+		const rowReducer = alphabet.reduce((rowSequence, row, rowIndex) => {
+			const columnReducer = row.reduce((sequence, char, columnIndex) => {
 				if (char === letter) {
 					const targetX = columnIndex - currentX;
 					const targetY = rowIndex - currentY;
@@ -43,15 +42,16 @@ function getSequence(word) {
 
 					const xDirections = createDirections(targetX, xDirection);
 					const yDirections = createDirections(targetY, yDirection);
-					sequence = sequence.concat(xDirections, yDirections, '⏎');
 					currentX = columnIndex;
 					currentY = rowIndex;
+					return sequence.concat(xDirections, yDirections, '⏎');
 				}
-			});
-		});
-	});
-
-	return sequence;
+				return sequence;
+			}, []);
+			return rowSequence.concat(columnReducer);
+		}, []);
+		return charSequence.concat(rowReducer);
+	}, []);
 }
 
 module.exports = getSequence;
