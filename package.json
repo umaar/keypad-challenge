@@ -3,10 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "xo && ava"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/umaar/keypad-challenge.git"
@@ -17,13 +15,12 @@
     "url": "https://github.com/umaar/keypad-challenge/issues"
   },
   "homepage": "https://github.com/umaar/keypad-challenge#readme",
-  "xo": {
-    "esnext": true,
-    "envs": [
-      "node"
-    ]
-  },
   "devDependencies": {
-    "ava": "^0.14.0"
+    "@umaar/personal-eslint-config": "^1.0.2",
+    "ava": "^3.7.1",
+    "xo": "^0.29.1"
+  },
+  "xo": {
+    "extends": "./node_modules/@umaar/personal-eslint-config/rules.json"
   }
 }

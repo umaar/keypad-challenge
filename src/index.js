@@ -1,5 +1,3 @@
-'use strict';
-
 const alphabet = [
 	['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'],
 	['j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'],
@@ -23,7 +21,7 @@ function getYDirection(targetY) {
 }
 
 function createDirections(count, direction) {
-	return Array(Math.abs(count)).fill(direction);
+	return new Array(Math.abs(count)).fill(direction);
 }
 
 function getSequence(word) {
@@ -46,6 +44,7 @@ function getSequence(word) {
 					currentY = rowIndex;
 					return sequence.concat(xDirections, yDirections, '⏎');
 				}
+
 				return sequence;
 			}, []);
 			return rowSequence.concat(columnReducer);
@@ -54,4 +53,5 @@ function getSequence(word) {
 	}, []);
 }
 
-module.exports = getSequence;
+export default getSequence;
+
